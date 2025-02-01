@@ -1,0 +1,7 @@
+.homeContainer {
+  overflow: auto;
+  height: 88vh;
+}
+.homeContainer::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,102 @@
+.jobListContainer {
+  padding: 25px;
+  padding-top: 0px;
+  overflow: auto;
+  height: 89vh;
+}
+.jobListContainer::-webkit-scrollbar {
+  display: none;
+}
+.jobListWrapper {
+  display: flex;
+  gap: 100px;
+  /* max-width: 1280px;
+  margin: auto; */
+  position: relative;
+}
+.leftSideWrapper {
+  width: 250px;
+}
+
+.left-side {
+  position: fixed;
+  left: 100px;
+  bottom: 0;
+  height: 90vh;
+  overflow: auto;
+}
+.left-side::-webkit-scrollbar {
+  display: none;
+}
+.jobTypes,
+.jobLevels,
+.jobCategories,
+.salaryRange {
+  margin-top: 20px;
+}
+.typesHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.checkboxWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 7px;
+}
+.checkboxDiv {
+  display: flex;
+  gap: 12px;
+  font-size: 17px;
+  color: var(--black-secondary);
+}
+.checkboxDiv input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid var(--primary-color) !important;
+  width: 17px;
+  height: 17px;
+  position: relative;
+}
+
+/* input[type="checkbox"]:checked {
+  background-color: #4caf50; 
+  border-color: #4caf50; 
+} */
+input[type="checkbox"]:checked::after {
+  content: "\2713";
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+.searchJobBtn {
+  margin-top: 20px;
+}
+.btn {
+  outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  padding: 10px;
+  border-radius: 3px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+/* right side */
+
+.right-side {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 80%;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .jobListWrapper {
+    flex-direction: column;
+  }
+}

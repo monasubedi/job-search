@@ -1,0 +1,56 @@
+.savedJobsContainer {
+  max-width: 1280px;
+  margin: auto;
+  height: auto;
+  overflow: auto;
+}
+.savedJobsContainer::-webkit-scrollbar {
+  display: none;
+}
+.savedJobsWrapper {
+  padding: 20px;
+}
+table {
+  width: 80%;
+  margin-top: 35px;
+}
+
+table thead th {
+  text-align: start;
+  font-size: 20px;
+  padding: 10px;
+}
+table tbody {
+  margin-top: 20px;
+}
+table tbody tr td {
+  text-align: start;
+  padding: 10px;
+}
+.del {
+  color: brown;
+}
+
+@media (max-width: 1280px) {
+  .savedJobsContainer {
+    max-width: 1000px;
+  }
+}
+@media (max-width: 1000px) {
+  .savedJobsContainer {
+    max-width: 768px;
+  }
+}
+
+@media (max-width: 768px) {
+  .savedJobsContainer {
+    width: 100%;
+  }
+  table {
+    width: 100%;
+  }
+  table thead th {
+    font-size: 17px;
+    width: 100%;
+  }
+}

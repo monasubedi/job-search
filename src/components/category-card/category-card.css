@@ -1,0 +1,39 @@
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--white-color);
+  border-radius: 12px;
+  width: 250px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+.cardWrapper {
+  padding: 12px;
+}
+.cardWrapper img {
+  width: 60px;
+}
+.title {
+  color: var(--black-secondary);
+  font-size: 18px;
+}
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0px;
+}
+.footerText {
+  font-size: small;
+  color: var(--grey-color);
+}
+
+@media (max-width: 670px) {
+  .cardContainer {
+    width: 180px;
+  }
+  .cardWrapper img {
+    width: 40px;
+  }
+}

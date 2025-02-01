@@ -1,0 +1,11 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.inputContainer label {
+  color: var(--black-secondary);
+}
+.inputContainer input {
+  padding: 10px 15px;
+}

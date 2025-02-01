@@ -1,0 +1,127 @@
+.jobDetailContainer {
+  max-width: 1280px;
+  margin: auto;
+  height: 88vh;
+  overflow: auto;
+  padding: 20px;
+}
+.jobDetailContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.jobDetailWrapper {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.companyWrapper {
+  border: 1px solid var(--primary-color);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+.company {
+  display: flex;
+  gap: 5px;
+}
+.company-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.company-data {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.company-data h3 {
+  font-weight: 500;
+}
+.btn {
+  padding: 8px;
+  width: 100px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: var(--white-color);
+  border-radius: 3px;
+  cursor: pointer;
+  margin-right: 25px;
+}
+.company-right {
+  display: flex;
+  gap: 5px;
+}
+.about-position {
+  margin-top: 5px;
+}
+.about-position-wrapper {
+  border: 1px solid var(--primary-color);
+  padding: 15px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.about-position-wrapper h3 {
+  font-size: 25px;
+  font-weight: 500;
+}
+.infoWrapper {
+  display: flex;
+}
+.infoWrapper p {
+  font-size: 16px;
+}
+.label {
+  min-width: 200px;
+}
+
+.job-description {
+  margin-top: 20px;
+  border: 1px solid var(--primary-color);
+  padding: 15px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.descriptionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.requirements h3 {
+  margin-bottom: 5px;
+}
+.otherSkills h3 {
+  margin-bottom: 5px;
+}
+.btns {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.btns button {
+  padding: 8px;
+  width: 100px;
+  border: none;
+  outline: none;
+  color: var(--white-color);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.applyNow {
+  background-color: var(--primary-color);
+}
+.saveJob {
+  background-color: var(--grey-color);
+}
+
+@media (max-width: 768px) {
+  .jobDetailWrapper {
+    width: 100%;
+  }
+}
