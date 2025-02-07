@@ -17,8 +17,6 @@ const useJobList = () => {
     setJobLevel(e.target.value);
   };
 
-
-
   return {
     jobType,
     category,

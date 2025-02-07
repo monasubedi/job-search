@@ -24,8 +24,7 @@ const useSearchJobs = () => {
       const searchParams = new URLSearchParams(params).toString();
       const response = await axios.get(`${URL}/search?${searchParams}`, {
         headers: {
-          "x-rapidapi-key":
-            "b913c48ea2mshcf3d287f0c6941dp12140ajsnefbbc5e519d0",
+          "x-rapidapi-key": import.meta.env.VITE_JSEARCH_API_KEY,
           "x-rapidapi-host": "jsearch.p.rapidapi.com",
         },
       });
