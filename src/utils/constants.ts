@@ -48,3 +48,7 @@ export const SALARY_RANGE = [
   { key: "$1000-$5000", value: "$1000-$5000" },
   { key: "$5000-above", value: "$5000-above" },
 ];
+
+export const ROLE_ADMIN = "ROLE_ADMIN";
+export const ROLE_USER = "ROLE_USER";
+export const ROLE_EMPLOYER = "ROLE_EMPLOYER";

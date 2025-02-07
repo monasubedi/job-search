@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, RouteObject } from "react-router-dom";
 import Login from "../pages/auth/login";
 import Register from "../pages/auth/register";
 import Home from "../pages/home/home";
@@ -7,7 +7,7 @@ import JobList from "../pages/job-list/job-list";
 import SavedJobs from "../pages/saved-jobs/saved-jobs";
 import Root from "./root";
 
-const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: "/",
     element: <Root />,
@@ -38,6 +38,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 export default router;

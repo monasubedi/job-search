@@ -8,11 +8,13 @@ const SavedJobs = () => {
         <h2>My Saved Job List</h2>
         <table>
           <thead>
-            <th>Title</th>
-            <th>Job Type</th>
-            <th>Posted Date</th>
-            <th>Job Category</th>
-            <th>Action</th>
+            <tr>
+              <th>Title</th>
+              <th>Job Type</th>
+              <th>Posted Date</th>
+              <th>Job Category</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {[1, 2, 3, 4].map((_, key) => (

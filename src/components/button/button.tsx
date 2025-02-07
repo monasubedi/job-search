@@ -1,16 +1,30 @@
 import "./button.css";
 
-interface ButtonProps {
+export interface ButtonProps {
   title: string;
-  onClick: () => void;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
-const Button = ({ title, onClick }: ButtonProps) => {
+const Button = ({ title, type, disabled, onClick }: ButtonProps) => {
   return (
     <div className="btnContainer">
-      <button className="button" onClick={onClick}>
-        {title}
-      </button>
+      {type === "submit" && (
+        <button disabled={disabled} className="button" type={type}>
+          {title}
+        </button>
+      )}
+      {type === "button" && onClick && (
+        <button
+          disabled={disabled}
+          type={type}
+          className="button"
+          onClick={onClick}
+        >
+          {title}
+        </button>
+      )}
     </div>
   );
 };

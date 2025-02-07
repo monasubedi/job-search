@@ -1,31 +1,66 @@
+import { CircularProgress } from "@mui/material";
+import { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/button/button";
 import Input from "../../components/form-fields/input";
 import "./auth.css";
+import useAuth from "./useAuth";
 
 const Login = () => {
+  const {
+    email,
+    password,
+    handleEmailChange,
+    handlePasswordChange,
+    signInMutation,
+  } = useAuth();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    signInMutation.mutate({ email, password });
+  };
   return (
     <div className="authContainer">
       <div className="authWrapper">
         <h1>Sign In</h1>
-        <form>
+        <form role="form" onSubmit={(e) => handleSubmit(e)}>
           <Input
             label="Email"
+            role="textbox"
             type="email"
-            onChange={() => {}}
+            onChange={handleEmailChange}
             required={true}
             name="email"
-            value={""}
+            value={email}
           />
           <Input
-            label="Password"
+            role="textbox"
+            label="password"
             type="password"
-            onChange={() => {}}
+            onChange={handlePasswordChange}
             required={true}
             name="password"
-            value={""}
+            value={password}
           />
-          <Button title="LOG IN" onClick={() => {}} />
+          {signInMutation?.isPending ? (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress color="secondary" />
+            </div>
+          ) : (
+            <Button
+              title="LOG IN"
+              type="submit"
+              disabled={signInMutation?.isPending}
+            />
+          )}
+
           <small className="smallText">
             Dont't have an account yet?{" "}
             <span className="link">
