@@ -23,7 +23,7 @@ const JobList = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    // handleSearch();
+    handleSearch();
   }, []);
 
   const handleSearch = async () => {

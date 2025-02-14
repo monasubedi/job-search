@@ -5,7 +5,7 @@ import "./home.css";
 const Home = () => {
   return (
     <div className="homeContainer">
-      <h2>Home</h2>
+      {/* <h2>Home</h2> */}
       <Hero />
       <JobCategories />
     </div>

@@ -16,6 +16,7 @@
   --bg-primary: rgb(8, 15, 24);
   --bg-secondary: #d9d9d9;
   --black-secondary: #333333;
+  --dim-black: #5b5a5a;
 }
 body,
 html {
@@ -28,4 +29,5 @@ html {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }

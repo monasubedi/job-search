@@ -2,6 +2,20 @@ export interface navItem {
   key: string;
   title: string;
   to: string;
+  protected: boolean;
+  roles: Role[];
+}
+
+export enum Role {
+  ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_USER = "ROLE_USER",
+  ROLE_EMPLOYER = "ROLE_EMPLOYER",
+}
+
+export interface UserDataType {
+  userId: string;
+  token: string;
+  roles: Role[];
 }
 
 export interface JobCategory {
@@ -13,6 +27,7 @@ export interface JobCategory {
 export interface Job {
   employer_logo: string;
   employer_name: string;
+  employer_website?: string | null;
   job_id: string;
   job_title: string;
   job_apply_link: string;
@@ -28,10 +43,23 @@ export interface Job {
     Responsibilities: string[];
   };
 }
+export interface SaveJob {
+  jobId: string;
+  title: string;
+  employmentType: string;
+  postedDate: number;
+  applyLink: string;
+}
 
 export interface SearchParams {
   query: string;
   location_type?: string;
   employment_types?: string;
   job_requirements?: string;
+}
+
+export interface ApiResponse {
+  statusCode: number;
+  data: { userId: number; token: string };
+  message: string;
 }

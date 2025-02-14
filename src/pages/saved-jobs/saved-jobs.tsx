@@ -1,35 +1,68 @@
 import { DeleteOutline } from "@mui/icons-material";
+import { CircularProgress } from "@mui/material";
+import useSaveJob from "../../hooks/useSaveJob";
+import { SaveJob } from "../../utils/types";
 import "./saved-jobs.css";
+import useSavedJobs from "./useSavedJobs";
 
 const SavedJobs = () => {
+  const { getSavedJobsMutation } = useSavedJobs();
+  const { handleUnSaveJob } = useSaveJob();
   return (
     <div className="savedJobsContainer">
       <div className="savedJobsWrapper">
         <h2>My Saved Job List</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Job Type</th>
-              <th>Posted Date</th>
-              <th>Job Category</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[1, 2, 3, 4].map((_, key) => (
-              <tr key={key}>
-                <td>UI/UX design</td>
-                <td>Full Time</td>
-                <td>01/01/2025</td>
-                <td>Frontend Development</td>
-                <td>
-                  <DeleteOutline className="del" />
-                </td>
+        {getSavedJobsMutation.isFetching ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "50px",
+            }}
+          >
+            <CircularProgress color="secondary" />
+          </div>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Job Type</th>
+                <th>Posted Date</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {getSavedJobsMutation.data &&
+                getSavedJobsMutation.data.data.map((d: SaveJob) => {
+                  return (
+                    <tr key={d.jobId}>
+                      <td>{d?.title}</td>
+                      <td>{d?.employmentType}</td>
+                      <td>{new Date(d?.postedDate).toString()}</td>
+                      <td
+                        style={{
+                          display: "flex",
+                          gap: "10px",
+                          alignItems: "center",
+                          cursor: "pointer",
+                        }}
+                      >
+                        <div onClick={() => handleUnSaveJob(d?.jobId)}>
+                          <DeleteOutline className="del" />
+                        </div>
+
+                        <a href={d.applyLink} style={{ color: "blue" }}>
+                          Apply Now
+                        </a>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );

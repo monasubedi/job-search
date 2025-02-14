@@ -1,15 +1,8 @@
 import { createContext, useContext, useState } from "react";
-import { Job } from "../utils/types";
-
-interface JobListQuery {
-  isLoading: boolean;
-  error: boolean;
-  data: Job[];
-}
 
 interface JobContextType {
-  jobListQuery: JobListQuery;
-  setJobListQuery: (jobListQuery: JobListQuery) => void;
+  jobIds: string[];
+  setJobIds: (id: string[]) => void;
 }
 
 export const JobContext = createContext<JobContextType | undefined>(undefined);
@@ -19,13 +12,9 @@ export const JobContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [jobListQuery, setJobListQuery] = useState<JobListQuery>({
-    isLoading: false,
-    error: false,
-    data: [],
-  });
+  const [jobIds, setJobIds] = useState([]);
   return (
-    <JobContext.Provider value={{ jobListQuery, setJobListQuery }}>
+    <JobContext.Provider value={{ jobIds, setJobIds }}>
       {children}
     </JobContext.Provider>
   );

@@ -2,10 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuthContext } from "../../context/AuthContext";
 import { Data, login, register } from "../../services";
+import { ApiResponse } from "../../utils/types";
 
 const useAuth = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, setIsAuthenticated } = useAuthContext();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +26,10 @@ const useAuth = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const onSuccess = (message: string) => {
-    toast.success(message);
+  const onSuccess = (data: ApiResponse) => {
+    toast.success(data.message);
+    localStorage.setItem("userData", JSON.stringify(data.data));
+    setIsAuthenticated(!isAuthenticated);
     navigate("/");
   };
   const onError = (message: string) => {
@@ -34,14 +39,14 @@ const useAuth = () => {
   const signUpMutation = useMutation({
     mutationKey: ["register"],
     mutationFn: (formData: Data) => register(formData),
-    onSuccess: (data) => onSuccess(data.message),
-    onError,
+    onSuccess: (data) => onSuccess(data),
+    onError: (data) => onError(data.message),
   });
   const signInMutation = useMutation({
     mutationKey: ["login"],
     mutationFn: (formData: Data) => login(formData),
-    onSuccess: (data) => onSuccess(data.message),
-    onError,
+    onSuccess: (data) => onSuccess(data),
+    onError: (data) => onError(data.message),
   });
   return {
     username,

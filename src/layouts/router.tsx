@@ -5,6 +5,7 @@ import Home from "../pages/home/home";
 import JobDetail from "../pages/job-detail/job-detail";
 import JobList from "../pages/job-list/job-list";
 import SavedJobs from "../pages/saved-jobs/saved-jobs";
+import AuthLayout from "./auth-layout";
 import Root from "./root";
 
 export const routes: RouteObject[] = [
@@ -24,10 +25,7 @@ export const routes: RouteObject[] = [
         path: "/job-detail/search",
         element: <JobDetail />,
       },
-      {
-        path: "/saved-jobs",
-        element: <SavedJobs />,
-      },
+
       {
         path: "/login",
         element: <Login />,
@@ -35,6 +33,16 @@ export const routes: RouteObject[] = [
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/saved-jobs",
+        element: <SavedJobs />,
       },
     ],
   },

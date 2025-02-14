@@ -1,12 +1,14 @@
 import { Close, Menu } from "@mui/icons-material";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../../context/AuthContext";
 import { nav_items } from "../../utils/constants";
 import { navItem } from "../../utils/types";
 import "./navbar.css";
 
 const Navbar = () => {
   const menuRef = useRef<HTMLDivElement>(null);
+  const authContext = useAuthContext();
 
   const handleShowMenuItems = () => {
     if (menuRef.current) {
@@ -29,14 +31,27 @@ const Navbar = () => {
           <ul>
             {nav_items.map((item: navItem) => (
               <Link to={item.to} key={item.title}>
-                <li>{item.title}</li>
+                {item.protected &&
+                  authContext.isAuthenticated &&
+                  item.roles.includes(authContext.userData.roles[0]) && (
+                    <li>{item.title}</li>
+                  )}
               </Link>
             ))}
           </ul>
-          <div className="buttons">
-            <Link to={"/login"}>Sign In</Link>
-            <Link to={"/register"}>Sign Up</Link>
-          </div>
+          {authContext.isAuthenticated ? (
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => authContext.logout()}
+            >
+              Logout
+            </div>
+          ) : (
+            <div className="buttons">
+              <Link to={"/login"}>Sign In</Link>
+              <Link to={"/register"}>Sign Up</Link>
+            </div>
+          )}
         </div>
         <div className="menuIcon" onClick={handleShowMenuItems}>
           <Menu fontSize="large" />
@@ -55,10 +70,19 @@ const Navbar = () => {
               </Link>
             ))}
           </ul>
-          <div className="buttons">
-            <Link to={"/login"}>Sign In</Link>
-            <Link to={"/register"}>Sign Up</Link>
-          </div>
+          {authContext.isAuthenticated ? (
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => authContext.logout()}
+            >
+              Logout
+            </div>
+          ) : (
+            <div className="buttons">
+              <Link to={"/login"}>Sign In</Link>
+              <Link to={"/register"}>Sign Up</Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

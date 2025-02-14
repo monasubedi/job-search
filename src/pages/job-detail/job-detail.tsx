@@ -1,11 +1,18 @@
-import { BookmarkAddOutlined } from "@mui/icons-material";
+import {
+  BookmarkAddedOutlined,
+  BookmarkAddOutlined,
+} from "@mui/icons-material";
+import { useJobContext } from "../../context/JobContext";
+import useSaveJob from "../../hooks/useSaveJob";
 import JobDetailSkeleton from "../../skeletons/JobDetailSkeleton";
 import "./job-detail.css";
 import useJobDetail from "./useJobDetail";
 
 const JobDetail = () => {
   const { jobDetail, isLoading } = useJobDetail();
-  return isLoading ? (
+  const { handleSaveJob, handleUnSaveJob } = useSaveJob();
+  const { jobIds } = useJobContext();
+  return isLoading || !jobDetail ? (
     <div>
       <JobDetailSkeleton />
     </div>
@@ -14,53 +21,62 @@ const JobDetail = () => {
       <div className="jobDetailWrapper">
         <div className="companyWrapper">
           <div className="company">
-            <img src="" alt="logo" className="company-logo" />
+            <img
+              src={jobDetail?.employer_logo}
+              alt="logo"
+              className="company-logo"
+            />
             <div className="company-data">
               <h3>{jobDetail?.employer_name}</h3>
-              <p>IT company</p>
-              <span>33+ jobs</span>
+              <a href={jobDetail?.employer_website}>
+                <small className="link">Visit Company</small>
+              </a>
             </div>
           </div>
           <div className="company-right">
             <button className="btn">
               <a href={jobDetail?.job_apply_link}>Apply</a>
             </button>
-            <BookmarkAddOutlined />
+
+            <div
+              onClick={() =>
+                jobIds?.includes(jobDetail?.job_id)
+                  ? handleUnSaveJob(jobDetail.job_id)
+                  : handleSaveJob({
+                      jobId: jobDetail.job_id,
+                      title: jobDetail.job_title,
+                      employmentType: jobDetail.job_employment_type,
+                      applyLink: jobDetail.job_apply_link,
+                      postedDate: jobDetail.job_posted_at_timestamp,
+                    })
+              }
+            >
+              {jobIds.includes(jobDetail.job_id) ? (
+                <BookmarkAddedOutlined />
+              ) : (
+                <BookmarkAddOutlined />
+              )}
+            </div>
           </div>
         </div>
         <div className="about-position">
           <div className="about-position-wrapper">
             <h3>{jobDetail?.job_title}</h3>
             <small>Basic Job Information</small>
-            {/* <div className="infoWrapper">
-              <p className="label">Job Category</p>
-              <p className="value">:IT(Software)</p>
-            </div>
-            <div className="infoWrapper">
-              <span className="label">Job level</span>
-              <span className="value">:Senior (2+ years)</span>
-            </div> */}
-            {/* <div className="infoWrapper">
-              <span className="label">Job Category</span>
-              <span className="value">:IT(Software)</span>
-            </div> */}
-            {/* <div className="infoWrapper">
-              <span className="label">No. of vacancy</span>
-              <span className="value">:[6]</span>
-            </div> */}
             <div className="infoWrapper">
               <span className="label">Job Type</span>
-              <span className="value">:{jobDetail?.job_employment_type}</span>
+              <span className="value">: {jobDetail?.job_employment_type}</span>
             </div>
             <div className="infoWrapper">
               <span className="label">Location</span>
-              <span className="value">:{jobDetail?.job_location}</span>
+              <span className="value">: {jobDetail?.job_location}</span>
             </div>
             <div className="infoWrapper">
               <span className="label">Job Posted At</span>
               <span className="value">
+                :{" "}
                 {jobDetail?.job_posted_at_timestamp &&
-                  new Date(jobDetail?.job_posted_at_timestamp).toISOString()}
+                  new Date(jobDetail?.job_posted_at_timestamp).toUTCString()}
               </span>
             </div>
           </div>
@@ -86,9 +102,9 @@ const JobDetail = () => {
             <h3>Responsibilities:</h3>
             <ul>
               {jobDetail?.job_highlights &&
-                jobDetail?.job_highlights?.Qualifications.map((res: string) => (
-                  <li key={res}>- {res}</li>
-                ))}
+                jobDetail?.job_highlights?.Responsibilities?.map(
+                  (res: string) => <li key={res}>- {res}</li>
+                )}
             </ul>
           </div>
           <div className="btns">
@@ -96,7 +112,22 @@ const JobDetail = () => {
               {" "}
               <a href={jobDetail?.job_apply_link}>Apply Now</a>
             </button>
-            <button className="saveJob">Save Job</button>
+            <button
+              onClick={() =>
+                jobIds?.includes(jobDetail?.job_id)
+                  ? handleUnSaveJob(jobDetail.job_id)
+                  : handleSaveJob({
+                      jobId: jobDetail.job_id,
+                      title: jobDetail.job_title,
+                      employmentType: jobDetail.job_employment_type,
+                      applyLink: jobDetail.job_apply_link,
+                      postedDate: jobDetail.job_posted_at_timestamp,
+                    })
+              }
+              className="saveJob"
+            >
+              {jobIds?.includes(jobDetail?.job_id) ? "SAVED" : "Save Job"}
+            </button>
           </div>
         </div>
       </div>

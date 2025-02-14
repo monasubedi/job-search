@@ -1,9 +1,27 @@
-import { JobCategory, navItem } from "./types";
+import { JobCategory, navItem, Role } from "./types";
 
 export const nav_items: navItem[] = [
-  { key: "home", title: "Home", to: "/" },
-  { key: "post-jobs", title: "Post jobs", to: "/post-jobs" },
-  { key: "saved-jobs", title: "Saved jobs", to: "/saved-jobs" },
+  {
+    key: "home",
+    title: "Home",
+    to: "/",
+    protected: false,
+    roles: [Role.ROLE_ADMIN, Role.ROLE_EMPLOYER, Role.ROLE_USER],
+  },
+  {
+    key: "post-jobs",
+    title: "Post jobs",
+    to: "/post-jobs",
+    protected: true,
+    roles: [Role.ROLE_ADMIN, Role.ROLE_EMPLOYER],
+  },
+  {
+    key: "saved-jobs",
+    title: "Saved jobs",
+    to: "/saved-jobs",
+    protected: true,
+    roles: [Role.ROLE_ADMIN, Role.ROLE_USER],
+  },
 ];
 
 export const JOB_CATEGORIES: JobCategory[] = [
