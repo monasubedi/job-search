@@ -12,7 +12,7 @@ export const JobContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [jobIds, setJobIds] = useState([]);
+  const [jobIds, setJobIds] = useState<string[]>([]);
   return (
     <JobContext.Provider value={{ jobIds, setJobIds }}>
       {children}

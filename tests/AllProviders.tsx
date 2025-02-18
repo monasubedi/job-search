@@ -1,5 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { PropsWithChildren } from "react";
+import { AuthContextProvider } from "../src/context/AuthContext";
+import { JobContextProvider } from "../src/context/JobContext";
 
 const AllProviders = ({ children }: PropsWithChildren) => {
   const queryClient = new QueryClient({
@@ -10,7 +12,13 @@ const AllProviders = ({ children }: PropsWithChildren) => {
     },
   });
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <AuthContextProvider>
+      <JobContextProvider>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
+      </JobContextProvider>
+    </AuthContextProvider>
   );
 };
 

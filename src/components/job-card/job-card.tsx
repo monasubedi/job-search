@@ -15,8 +15,9 @@ const JobCard = ({ job }: { job: Job }) => {
 
   return (
     <div className="jobCardContainer">
-      <div className="jobCardWrapper">
+      <div className="jobCardWrapper" data-testid="jobDetail">
         <Link
+          data-testid="detailLink"
           style={{ display: "flex" }}
           to={`/job-detail/search?id=${job.job_id}&country=${job.job_country}`}
         >
