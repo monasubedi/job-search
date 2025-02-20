@@ -111,9 +111,13 @@ const JobList = () => {
         <div className="right-side">
           <h3>All Jobs</h3>
           {isLoading ? (
-            <JobCardSkeleton />
+            <div data-testid="loading">
+              <JobCardSkeleton />
+            </div>
           ) : !isLoading && jobList.length > 0 ? (
-            jobList.map((job: Job) => <JobCard key={job.job_id} job={job} />)
+            jobList.map((job: Job) => (
+              <JobCard data-testid={job.job_id} key={job.job_id} job={job} />
+            ))
           ) : !isLoading && jobList.length === 0 ? (
             <div>No Results.</div>
           ) : (

@@ -13,7 +13,7 @@ const JobDetail = () => {
   const { handleSaveJob, handleUnSaveJob } = useSaveJob();
   const { jobIds } = useJobContext();
   return isLoading || !jobDetail ? (
-    <div>
+    <div data-testid="loading">
       <JobDetailSkeleton />
     </div>
   ) : (

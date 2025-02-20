@@ -55,12 +55,9 @@ describe("JobCard", () => {
     expect(employer_name).toBeInTheDocument();
     expect(employment_type).toBeInTheDocument();
     expect(job_location).toBeInTheDocument();
-    expect(logo).toHaveAttribute(
-      "src",
-      "https://www.jsonplaceholder.com/images/120x120"
-    );
+    expect(logo).toHaveAttribute("src", "https://www.example.com");
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "https://");
+    expect(link).toHaveAttribute("href", "https://www.example.com");
     expect(saveBtn).toBeInTheDocument();
   });
 
