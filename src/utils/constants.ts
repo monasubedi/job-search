@@ -5,7 +5,7 @@ export const nav_items: navItem[] = [
     key: "home",
     title: "Home",
     to: "/",
-    protected: false,
+    protected: true,
     roles: [Role.ROLE_ADMIN, Role.ROLE_EMPLOYER, Role.ROLE_USER],
   },
   {

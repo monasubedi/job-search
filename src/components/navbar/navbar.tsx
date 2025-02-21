@@ -28,19 +28,20 @@ const Navbar = () => {
         </Link>
 
         <div className="navItems">
-          <ul>
+          <ul data-testid="desktop-navItems">
             {nav_items.map((item: navItem) => (
               <Link to={item.to} key={item.title}>
                 {item.protected &&
                   authContext.isAuthenticated &&
                   item.roles.includes(authContext.userData.roles[0]) && (
-                    <li>{item.title}</li>
+                    <li data-testid="desktop-navItems">{item.title}</li>
                   )}
               </Link>
             ))}
           </ul>
           {authContext.isAuthenticated ? (
             <div
+              data-testid="desktop-logout"
               style={{ cursor: "pointer" }}
               onClick={() => authContext.logout()}
             >
@@ -48,8 +49,12 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="buttons">
-              <Link to={"/login"}>Sign In</Link>
-              <Link to={"/register"}>Sign Up</Link>
+              <Link data-testid="desktop-signin" to={"/login"}>
+                Sign In
+              </Link>
+              <Link data-testid="desktop-signup" to={"/register"}>
+                Sign Up
+              </Link>
             </div>
           )}
         </div>
@@ -66,7 +71,7 @@ const Navbar = () => {
           <ul>
             {nav_items.map((item: navItem) => (
               <Link to={item.to} key={item.title}>
-                <li>{item.title}</li>
+                <li data-testid="mobile-navItems">{item.title}</li>
               </Link>
             ))}
           </ul>
@@ -79,8 +84,12 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="buttons">
-              <Link to={"/login"}>Sign In</Link>
-              <Link to={"/register"}>Sign Up</Link>
+              <Link data-testid="mobile-signin" to={"/login"}>
+                Sign In
+              </Link>
+              <Link data-testid="mobile-signup" to={"/register"}>
+                Sign Up
+              </Link>
             </div>
           )}
         </div>
